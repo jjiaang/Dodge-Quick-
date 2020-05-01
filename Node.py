@@ -81,7 +81,7 @@ class Node():
             self.y = 0
         
         if self.y < 580 and self.isJump == False and self.touchingFloor == False:
-            self.y += (self.jumpCount**2)*0.025
+            self.y += (15**2)*0.025
 
             if self.y > 580:
                 self.y = 580
