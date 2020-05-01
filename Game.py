@@ -47,7 +47,7 @@ class Game():
             #Key press event for space bar
             if not self.player.checkJump():
 
-                if keyPressed[pygame.K_SPACE] and self.player.y > 0 and self.player.y <= 580:
+                if (keyPressed[pygame.K_SPACE] and self.player.y > 0 and self.player.y <= 580 and self.player.touchingGround == True) or (keyPressed[pygame.K_SPACE] and self.player.y > 0 and self.player.y <= 580 and self.player.touchingFloor == True):
                     self.player.isJump = True
 
             else:
@@ -64,6 +64,7 @@ class Game():
             self.screen.fill((0,0,0))
             self.player.drawPlayer(self.screen)
             self.floor1.drawFloor(self.screen)
+            print(self.player.touchingGround)
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
