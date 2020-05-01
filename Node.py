@@ -61,7 +61,7 @@ class Node():
 
             # Check to see if a player is touching a floor
             if self.collision == True and self.floorValue > 0:
-                self.y = self.floorValue - self.sizey
+                self.y = self.floorValue
                 self.collision = False
                 self.jumpCount = self.jumpConstant - 1
 
@@ -93,12 +93,12 @@ class Node():
                 self.touchGround()
 
     # Checks to see if the player is touching a floor
-    def playerCollision(self,floorY):
+    def playerTouchFloor(self,floor):
 
         if self.isJump == True:
-            if int(self.y) == floorY and self.neg == -1:
+            if int(self.y) == floor.y and self.neg == -1:
                 self.collision = True
-                self.floorValue = floorY
+                self.floorValue = floor.y - floor.width
                 self.touchingFloor = True
                 self.touchingGround = False
 

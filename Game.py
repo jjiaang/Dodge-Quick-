@@ -17,7 +17,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floor1 = Floor(400,503,20,150)
+        self.floor1 = Floor(400,467,20,150)
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -25,7 +25,7 @@ class Game():
     def startGame(self):
 
         while self.RUN:
-            pygame.time.delay(10)
+            pygame.time.delay(12)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -54,9 +54,9 @@ class Game():
             else:
                 self.player.jump()
 
-            #Checks to see if the player is within the range of the floor.
+            #Checks to see if the player is within the range of the floor1.
             if self.player.x + self.player.sizex >= self.floor1.x and self.player.x <= self.floor1.x + self.floor1.length:
-                self.player.playerCollision(self.floor1.y)
+                self.player.playerTouchFloor(self.floor1)
             
             else:
                 self.player.touchingFloor = False
@@ -65,7 +65,6 @@ class Game():
             self.screen.fill((0,0,0))
             self.player.drawPlayer(self.screen)
             self.floor1.drawFloor(self.screen)
-            print("Touching Ground: " + str(self.player.touchingGround) + " Touching a Floor: " + str(self.player.touchingFloor))
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
