@@ -55,7 +55,7 @@ class Node():
             self.y -= (self.jumpCount**2)*0.025 * self.neg
             self.jumpCount -= 1
 
-            #Checks to see if the player is in the air, if it is, then bring back down
+            #Checks to see if the player is in the air, if it is, then bring back down. Also checks if the player is touching the ground.
             self.checkPlayerY()
             self.touchGround()
 
@@ -89,6 +89,7 @@ class Node():
             # Lower bound for the player cannot leave the screen
             if self.y > 580:
                 self.y = 580
+                # Check the player touching ground
                 self.touchGround()
 
     # Checks to see if the player is touching a floor
@@ -104,6 +105,7 @@ class Node():
     # Checks to see if the player is touching the ground
     def touchGround(self):
 
+        # If the y value of the player is above the ground (aka. less than 580)
         if self.y < 580:
             self.touchingGround = False
         
