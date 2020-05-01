@@ -1,5 +1,8 @@
 from Game import Game
 
-newGame = Game()
+def game():
+    newGame = Game()
 
-newGame.startGame()
+    newGame.startGame()
+
+game()

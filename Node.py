@@ -16,7 +16,7 @@ class Node():
         self.jumpConstant = -25
         self.neg = 1
         self.collision = False
-        self.floorValue = 0
+        self.floorValue = 0 # Same value as the player.y value when its on a floor
         self.touchingFloor = False
         self.touchingGround = True
 
@@ -96,9 +96,9 @@ class Node():
     def playerTouchFloor(self,floor):
 
         if self.isJump == True:
-            if int(self.y) == floor.y and self.neg == -1:
+            if int(self.y) == floor.floorPixelHeight and self.neg == -1:
                 self.collision = True
-                self.floorValue = floor.y - floor.width
+                self.floorValue = floor.floorPixelHeight - floor.width
                 self.touchingFloor = True
                 self.touchingGround = False
 

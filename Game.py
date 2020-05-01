@@ -3,6 +3,7 @@ from Node import Node
 from Floor import Floor
 from Counter import Counter
 import math
+import random
 
 class Game():
 
@@ -17,7 +18,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floor1 = Floor(400,467,20,150)
+        self.floor1 = Floor(300,random.randrange(0,24),20,150)
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -65,6 +66,8 @@ class Game():
             self.screen.fill((0,0,0))
             self.player.drawPlayer(self.screen)
             self.floor1.drawFloor(self.screen)
+
+            print(int(self.player.y),self.player.floorValue)
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
