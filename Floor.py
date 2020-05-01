@@ -10,5 +10,6 @@ class Floor():
         self.height = width
         self.length = length
 
+    # Draws a floor
     def drawFloor(self,window):
         pygame.draw.rect(window, (255,0,0),(self.x,self.y,self.length,self.height))

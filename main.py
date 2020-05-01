@@ -28,6 +28,8 @@ while RUN:
     # Gets the current key pressed
     keyPressed = pygame.key.get_pressed()
 
+    player.checkPlayerY()
+
     #Key press event for a
     if keyPressed[pygame.K_a] and player.x > 0:
         player.moveLeft()
@@ -39,7 +41,7 @@ while RUN:
     #Key press event for space bar
     if not player.checkJump():
 
-        if keyPressed[pygame.K_SPACE]:
+        if keyPressed[pygame.K_SPACE] and player.y > 0 and player.y <= 580:
             player.isJump = True
 
     else:
@@ -47,14 +49,17 @@ while RUN:
 
     #Checks to see if the player is within the range of the floor.
     if player.x + player.sizex >= floor1.x and player.x <= floor1.x + floor1.length:
-        pass
-
+        player.playerCollision(floor1.y)
+    
+    else:
+        player.touchingFloor = False
 
 
     screen.fill((0,0,0))
     player.drawPlayer(screen)
     floor1.drawFloor(screen)
 
+    # Displays the X and Y position counters
     counter.printXPOS(screen,player)
     counter.printYPOS(screen,player)
 
