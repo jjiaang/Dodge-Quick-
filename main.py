@@ -14,7 +14,7 @@ pygame.display.set_caption("Game")
 # Initialize the classes
 player = Node(0,580,5)
 floor1 = Floor(400,503,20,150)
-counterX = Counter(725,10)
+counter = Counter(750,10)
 
 RUN = True
 
@@ -45,8 +45,9 @@ while RUN:
     else:
         player.jump()
 
+    #Checks to see if the player is within the range of the floor.
     if player.x + player.sizex >= floor1.x and player.x <= floor1.x + floor1.length:
-        print("ok")
+        pass
 
 
 
@@ -54,6 +55,7 @@ while RUN:
     player.drawPlayer(screen)
     floor1.drawFloor(screen)
 
-    counterX.printXPOS(screen,player)
+    counter.printXPOS(screen,player)
+    counter.printYPOS(screen,player)
 
     pygame.display.update()

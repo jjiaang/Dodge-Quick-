@@ -10,8 +10,12 @@ class Counter():
         self.x = xpos
         self.y = ypos
 
-        self.newFont = pygame.font.SysFont("Arial",10)
+        self.newFont = pygame.font.SysFont("Arial",12)
 
     def printXPOS(self,window,player):
-        text = self.newFont.render("x = " + str(float(player.x)),1,(255,255,255))
+        text = self.newFont.render("x = " + str(int(player.x)),1,(255,255,255))
         window.blit(text,(self.x,self.y))
+
+    def printYPOS(self,window,player):
+        text = self.newFont.render("y = " + str(int(player.y)),1,(255,255,255))
+        window.blit(text,(self.x,self.y+15))
