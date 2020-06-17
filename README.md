@@ -1,4 +1,5 @@
-# Made with python
-This is a game lol
+# Python platformer game?
 
-idk what to do
+Side project to work on in the summer
+
+Functions kind of like donkey kong or mario
