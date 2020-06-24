@@ -111,4 +111,5 @@ class Node():
         
         if int(self.y) == 580:
             self.touchingGround = True
+            self.floorValue = 0
         
