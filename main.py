@@ -5,4 +5,5 @@ def game():
 
     newGame.startGame()
 
-game()
+if __name__ == "__main__":   
+    game()
