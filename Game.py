@@ -18,7 +18,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,random.randrange(0,24),20,150)]
+        self.floors = [Floor(300,random.randrange(0,24),20,150), Floor(600,random.randrange(0,24),20,150)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -55,12 +55,16 @@ class Game():
             else:
                 self.player.jump()
 
-            #Checks to see if the player is within the range of the floor1.
+            #Checks to see if the player is within the range of the floors.
             for floor in self.floors:
+                currentFloor = floor
+
                 if self.player.x + self.player.sizex >= floor.x and self.player.x <= floor.x + floor.length:
                     self.player.playerTouchFloor(floor)
-                
-                else:
+                    break
+
+            for floor in self.floors:
+                if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
                     self.player.touchingFloor = False
 
 
