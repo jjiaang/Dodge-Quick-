@@ -18,7 +18,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,random.randrange(0,1),20,150), Floor(600,random.randrange(0,1),20,150)]
+        self.floors = [Floor(300,0,20,150), Floor(600,1,20,150)]
         self.counter = Counter(750,10)
 
         self.RUN = True

@@ -11,7 +11,7 @@ class Floor():
         self.length = length
         self.base = 580
 
-        self.floorHeights = [486.5]
+        self.floorHeights = [486.5,486.5]
 
         self.floorPixelHeight = self.floorHeights[self.y]
 

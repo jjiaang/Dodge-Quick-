@@ -43,6 +43,8 @@ class Node():
     # Player jump command
     def jump(self):
 
+        self.floorValue = 0
+
         # Checks to see if jumpCount is >= jumpConstant.
         if (self.jumpCount >= self.jumpConstant):
             self.neg = 1
@@ -90,6 +92,7 @@ class Node():
         
         # Gravity to bring it back down
         if self.y < 580 and self.isJump == False and self.touchingFloor == False:
+            self.floorValue = 0
             self.y += (10**2)*0.025
 
             # Lower bound for the player cannot leave the screen
@@ -121,4 +124,3 @@ class Node():
     def isTouchingFloor(self):
         if self.floorValue != self.y:
             self.touchingFloor = False
-        
