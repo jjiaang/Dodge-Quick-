@@ -19,5 +19,5 @@ class Counter():
 
     # Displays the Y position counter
     def printYPOS(self,window,player):
-        text = self.newFont.render("y = " + str(int(player.y)),1,(255,255,255))
+        text = self.newFont.render("y = " + str(player.y),1,(255,255,255))
         window.blit(text,(self.x,self.y+15))

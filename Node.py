@@ -110,7 +110,6 @@ class Node():
                     self.gravCountJump += 1
             
             if not self.prevJump:
-                print(self.gravCountFloor)
                 self.y += (self.gravCountFloor**2)*0.025
                 if (self.gravCountFloor < 28):
                     self.gravCountFloor += 1
@@ -125,12 +124,13 @@ class Node():
     # Checks to see if the player is touching a floor
     def playerTouchFloor(self,floor):
 
-        if self.y == floor.floorPixelHeight and self.neg == -1:
-            self.collision = True
-            self.floorValue = floor.floorPixelHeight - floor.width
-            self.touchingFloor = True
-            self.touchingGround = False
-            self.gravCountFloor = 4
+        for i in range(floor.width):
+            if (self.y == floor.floorPixelHeight + i and self.neg == -1):
+                self.collision = True
+                self.floorValue = floor.floorPixelHeight - floor.width
+                self.touchingFloor = True
+                self.touchingGround = False
+                self.gravCountFloor = 4
 
     # Checks to see if the player is touching the ground
     def touchGround(self):

@@ -71,6 +71,7 @@ class Game():
             if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
                 self.player.touchingFloor = False
 
+            print(self.player.y)    
 
             self.screen.fill((0,0,0))
             self.player.drawPlayer(self.screen)
