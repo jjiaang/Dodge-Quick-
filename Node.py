@@ -74,6 +74,7 @@ class Node():
                 self.collision = False
                 self.jumpCount = self.jumpConstant - 1
 
+        #If the jump is finished, then reset
         else:
             self.isJump = False
             self.jumpCount = -self.jumpConstant
@@ -101,6 +102,8 @@ class Node():
         if self.y < 580 and not self.isJump and not self.touchingFloor:
             self.floorValue = 0
 
+            # If the player has previously jumped, player will continue falling at the same speed as when the jump ended
+            # Otherwise, the gravity will reset, such as if a player is on the floor
             if self.prevJump:
                 self.y += (self.gravCountJump**2)*0.025
                 if (self.gravCountJump < 28):

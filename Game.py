@@ -56,6 +56,8 @@ class Game():
                 self.player.jump()
 
             #Checks to see if the player is within the range of the floors.
+            #If the player is touching the floor, we set prevJump to false, since, that way, the gravity changes for the player
+            #If prevJump is false, then the player will start falling as if it were falling from the apex of a jump, rather than having a constant value, which is super fast
             for floor in self.floors:
                 currentFloor = floor
 
@@ -65,6 +67,7 @@ class Game():
                         self.player.prevJump = False
                     break
             
+            #Checks to see if the player is not touching a floor anymore, based on the currentFloor, since floors cannot overlap, and a player can only touch one floor
             if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
                 self.player.touchingFloor = False
 
