@@ -10,6 +10,7 @@ class Floor():
         self.width = width
         self.length = length
         self.base = 580
+        self.keepMoving = False
 
         self.floorHeights = [486.5,411.15]
 

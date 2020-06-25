@@ -18,7 +18,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,0,20,150), Floor(600,1,20,150)]
+        self.floors = [Floor(300,0,20,150)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -40,6 +40,14 @@ class Game():
                 self.player.moveLeft()
 
             self.player.checkPlayerY()
+
+            if self.floors[0].x < 600 and self.floors[0].keepMoving == False:
+                self.floors[0].x += 1
+            else:
+                self.floors[0].x -= 1
+                self.floors[0].keepMoving = True
+                if self.floors[0].x < 150:
+                    self.floors[0].keepMoving = False
 
             #Key press event for d
             if keyPressed[pygame.K_d] and self.player.x < 800 - self.player.sizex:
