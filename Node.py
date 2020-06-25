@@ -19,6 +19,7 @@ class Node():
         self.floorValue = 0 # Same value as the player.y value when its on a floor
         self.touchingFloor = False
         self.touchingGround = True
+        self.gravCount = 25
 
     # Returns the color of the player
     def getColor(self):
@@ -57,8 +58,11 @@ class Node():
             self.y -= (self.jumpCount**2)*0.025 * self.neg
             self.jumpCount -= 1
 
-            #Checks to see if the player is in the air, if it is, then bring back down. Also checks if the player is touching the ground.
-            self.checkPlayerY()
+            # Checks to see if the player is in the air, if it is, then bring back down. Also checks if the player is touching the ground.
+            # Only check if player is still in the air after the jump
+            if (self.isJump == False):
+                self.checkPlayerY()
+
             self.touchGround()
 
             # Check to see if a player is touching a floor
@@ -93,7 +97,8 @@ class Node():
         # Gravity to bring it back down
         if self.y < 580 and self.isJump == False and self.touchingFloor == False:
             self.floorValue = 0
-            self.y += (10**2)*0.025
+            self.y += (self.gravCount**2)*0.025
+            self.gravCount += 1
 
             # Lower bound for the player cannot leave the screen
             if self.y >= 580:
