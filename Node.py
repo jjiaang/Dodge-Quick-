@@ -19,7 +19,9 @@ class Node():
         self.floorValue = 0 # Same value as the player.y value when its on a floor
         self.touchingFloor = False
         self.touchingGround = True
-        self.gravCount = 25
+        self.gravCountJump = 25
+        self.gravCountFloor = 4
+        self.prevJump = False
 
     # Returns the color of the player
     def getColor(self):
@@ -45,6 +47,7 @@ class Node():
     def jump(self):
 
         self.floorValue = 0
+        self.prevJump = True
 
         # Checks to see if jumpCount is >= jumpConstant.
         if (self.jumpCount >= self.jumpConstant):
@@ -97,14 +100,24 @@ class Node():
         # Gravity to bring it back down
         if self.y < 580 and self.isJump == False and self.touchingFloor == False:
             self.floorValue = 0
-            self.y += (self.gravCount**2)*0.025
-            self.gravCount += 1
+
+            if self.prevJump == True:
+                self.y += (self.gravCountJump**2)*0.025
+                if (self.gravCountJump < 28):
+                    self.gravCountJump += 1
+            
+            if self.prevJump == False:
+                print(self.gravCountFloor)
+                self.y += (self.gravCountFloor**2)*0.025
+                if (self.gravCountFloor < 28):
+                    self.gravCountFloor += 1
 
             # Lower bound for the player cannot leave the screen
             if self.y >= 580:
                 self.y = 580
                 # Check the player touching ground
                 self.touchGround()
+                self.gravCountFloor = 25
 
     # Checks to see if the player is touching a floor
     def playerTouchFloor(self,floor):
@@ -114,6 +127,7 @@ class Node():
             self.floorValue = floor.floorPixelHeight - floor.width
             self.touchingFloor = True
             self.touchingGround = False
+            self.gravCountFloor = 4
 
     # Checks to see if the player is touching the ground
     def touchGround(self):
@@ -125,6 +139,8 @@ class Node():
         if int(self.y) == 580:
             self.touchingGround = True
             self.floorValue = 0
+            self.prevJump = False
+            self.gravCountFloor = 4
 
     def isTouchingFloor(self):
         if self.floorValue != self.y:

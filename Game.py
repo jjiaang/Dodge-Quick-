@@ -61,6 +61,7 @@ class Game():
 
                 if self.player.x + self.player.sizex >= floor.x and self.player.x <= floor.x + floor.length:
                     self.player.playerTouchFloor(floor)
+                    self.player.prevJump = False
                     break
             
             if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
@@ -72,7 +73,7 @@ class Game():
             for floor in self.floors:
                 floor.drawFloor(self.screen)
 
-            print("Player y ",self.player.y,"Player x ", int(self.player.x), "Floor value ",self.player.floorValue,self.player.touchingFloor,self.player.isJump)
+            #print("Player y ",self.player.y,"Player x ", int(self.player.x), "Floor value ",self.player.floorValue,self.player.touchingFloor,self.player.isJump)
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
