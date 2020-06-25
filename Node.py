@@ -148,3 +148,6 @@ class Node():
     def isTouchingFloor(self):
         if self.floorValue != self.y:
             self.touchingFloor = False
+
+    def moveWithFloor(self,floor):
+        self.x += floor.velocity * floor.direction

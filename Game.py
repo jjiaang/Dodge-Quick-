@@ -18,7 +18,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,0,20,150)]
+        self.floors = [Floor(300,0,20,50)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -41,13 +41,22 @@ class Game():
 
             self.player.checkPlayerY()
 
-            if self.floors[0].x < 600 and self.floors[0].keepMoving == False:
-                self.floors[0].x += 1
-            else:
-                self.floors[0].x -= 1
-                self.floors[0].keepMoving = True
-                if self.floors[0].x < 150:
-                    self.floors[0].keepMoving = False
+            # Checks to see if the player is within a range, if the floor is at the end, floorTurn is changed
+            # The boolean value of floorTurn controls the floor movement
+            for floor in self.floors:
+                if floor.x < 600 and not floor.floorTurn:
+                    floor.direction = 1
+                    floor.x += floor.velocity
+                else:
+                    floor.direction = -1
+                    floor.x += floor.velocity * floor.direction
+                    floor.floorTurn = True
+                    if floor.x < 150:
+                        floor.floorTurn = False
+
+                # Checks to see if the player is on the floor, if the player is on the floor, the player will move with the floor.
+                if self.player.touchingFloor:
+                    self.player.moveWithFloor(floor)
 
             #Key press event for d
             if keyPressed[pygame.K_d] and self.player.x < 800 - self.player.sizex:
