@@ -9,8 +9,9 @@ class Floor():
         self.y = ypos
         self.width = width
         self.length = length
+        self.base = 580
 
-        self.floorHeights = [441,442,442,442,443,444,445,446,449,451,454,458,462,467,472,479,486,494,503,513,524,536,549,564]
+        self.floorHeights = [486.5]
 
         self.floorPixelHeight = self.floorHeights[self.y]
 

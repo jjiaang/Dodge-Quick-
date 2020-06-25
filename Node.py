@@ -81,13 +81,19 @@ class Node():
         # Upper bound for player cannot leave the screen
         if self.y < 0:
             self.y = 0
+
+        # Check to see if a player is touching a floor
+        if self.collision == True and self.floorValue > 0:
+            self.y = self.floorValue
+            self.collision = False
+            self.jumpCount = self.jumpConstant - 1
         
         # Gravity to bring it back down
         if self.y < 580 and self.isJump == False and self.touchingFloor == False:
-            self.y += (15**2)*0.025
+            self.y += (10**2)*0.025
 
             # Lower bound for the player cannot leave the screen
-            if self.y > 580:
+            if self.y >= 580:
                 self.y = 580
                 # Check the player touching ground
                 self.touchGround()
@@ -95,12 +101,11 @@ class Node():
     # Checks to see if the player is touching a floor
     def playerTouchFloor(self,floor):
 
-        if self.isJump == True:
-            if int(self.y) == floor.floorPixelHeight and self.neg == -1:
-                self.collision = True
-                self.floorValue = floor.floorPixelHeight - floor.width
-                self.touchingFloor = True
-                self.touchingGround = False
+        if self.y == floor.floorPixelHeight and self.neg == -1:
+            self.collision = True
+            self.floorValue = floor.floorPixelHeight - floor.width
+            self.touchingFloor = True
+            self.touchingGround = False
 
     # Checks to see if the player is touching the ground
     def touchGround(self):
@@ -114,5 +119,6 @@ class Node():
             self.floorValue = 0
 
     def isTouchingFloor(self):
-        return self.touchingFloor
+        if self.floorValue != self.y:
+            self.touchingFloor = False
         

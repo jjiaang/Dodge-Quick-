@@ -18,7 +18,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,random.randrange(0,24),20,150), Floor(600,random.randrange(0,24),20,150)]
+        self.floors = [Floor(300,random.randrange(0,1),20,150), Floor(600,random.randrange(0,1),20,150)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -41,9 +41,13 @@ class Game():
             if keyPressed[pygame.K_a] and self.player.x > 0:
                 self.player.moveLeft()
 
+            self.player.checkPlayerY()
+
             #Key press event for d
             if keyPressed[pygame.K_d] and self.player.x < 800 - self.player.sizex:
                 self.player.moveRight()
+
+            self.player.checkPlayerY()
 
             #Key press event for space bar
             if not self.player.checkJump():
@@ -56,6 +60,7 @@ class Game():
                 self.player.jump()
 
             #Checks to see if the player is within the range of the floors.
+            self.player.checkPlayerY()
             for floor in self.floors:
                 currentFloor = floor
 
@@ -63,9 +68,12 @@ class Game():
                     self.player.playerTouchFloor(floor)
                     break
 
-            for floor in self.floors:
-                if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
-                    self.player.touchingFloor = False
+            self.player.checkPlayerY()
+            
+            if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
+                self.player.touchingFloor = False
+
+            self.player.checkPlayerY()
 
 
             self.screen.fill((0,0,0))
@@ -73,7 +81,7 @@ class Game():
             for floor in self.floors:
                 floor.drawFloor(self.screen)
 
-            print(int(self.player.y),self.player.floorValue)
+            print("Player y ",self.player.y,"Player x ", int(self.player.x), "Floor value ",self.player.floorValue,self.player.touchingFloor,self.player.isJump)
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
