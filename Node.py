@@ -69,7 +69,7 @@ class Node():
             self.touchGround()
 
             # Check to see if a player is touching a floor
-            if self.collision == True and self.floorValue > 0:
+            if self.collision and self.floorValue > 0:
                 self.y = self.floorValue
                 self.collision = False
                 self.jumpCount = self.jumpConstant - 1
@@ -92,21 +92,21 @@ class Node():
             self.y = 0
 
         # Check to see if a player is touching a floor
-        if self.collision == True and self.floorValue > 0:
+        if self.collision and self.floorValue > 0:
             self.y = self.floorValue
             self.collision = False
             self.jumpCount = self.jumpConstant - 1
         
         # Gravity to bring it back down
-        if self.y < 580 and self.isJump == False and self.touchingFloor == False:
+        if self.y < 580 and not self.isJump and not self.touchingFloor:
             self.floorValue = 0
 
-            if self.prevJump == True:
+            if self.prevJump:
                 self.y += (self.gravCountJump**2)*0.025
                 if (self.gravCountJump < 28):
                     self.gravCountJump += 1
             
-            if self.prevJump == False:
+            if not self.prevJump:
                 print(self.gravCountFloor)
                 self.y += (self.gravCountFloor**2)*0.025
                 if (self.gravCountFloor < 28):

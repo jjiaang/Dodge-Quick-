@@ -61,7 +61,8 @@ class Game():
 
                 if self.player.x + self.player.sizex >= floor.x and self.player.x <= floor.x + floor.length:
                     self.player.playerTouchFloor(floor)
-                    self.player.prevJump = False
+                    if self.player.touchingFloor:
+                        self.player.prevJump = False
                     break
             
             if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
