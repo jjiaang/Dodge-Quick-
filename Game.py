@@ -72,7 +72,7 @@ class Game():
             for floor in self.floors:
                 floor.drawFloor(self.screen)
 
-            #print("Player y ",self.player.y,"Player x ", int(self.player.x), "Floor value ",self.player.floorValue,self.player.touchingFloor,self.player.isJump)
+            print("Player y ",self.player.y,"Player x ", int(self.player.x), "Floor value ",self.player.floorValue,self.player.touchingFloor,self.player.isJump)
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
