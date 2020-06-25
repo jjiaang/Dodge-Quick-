@@ -8,4 +8,5 @@ Title pending
 
 ## TODO
 
+- Fix gravity and hitbox detection, currently, gravity goes too fast when the player is falling, and the collision is not being detected
 - Add a scrolling screen
