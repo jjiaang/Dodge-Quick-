@@ -2,6 +2,7 @@ import pygame
 from Node import Node
 from Floor import Floor
 from Counter import Counter
+from Key import Key
 import math
 import random
 
@@ -24,6 +25,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
+        #Current floor values are probably going to be level 1
         self.floors = [Floor(300,0,20,50),Floor(500,1,20,50),Floor(100,2,20,50),Floor(200,3,20,50),Floor(400,4,20,50), Floor(250,5,20,50),Floor(50,6,20,50),Floor(150,7,20,50),Floor(550,8,20,50),Floor(450,9,20,50)]
         self.counter = Counter(750,10)
 
