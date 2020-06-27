@@ -15,7 +15,7 @@ class Floor():
         self.velocity = 3.5
         self.direction = 1
 
-        self.floorHeights = [486.5,423.25,463.25,324.25,455.25]
+        self.floorHeights = [100,150,200,250,300,350,400,450,500,550,525]
 
         self.floorPixelHeight = self.floorHeights[self.y]
 

@@ -24,7 +24,10 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,0,20,50),Floor(500,1,20,50),Floor(100,2,20,50),Floor(200,3,20,50),Floor(400,4,20,50)]
+        self.floors = []
+        for i in range(11):
+            self.floors.append(Floor(100+i*50,i,20,50))
+        #self.floors = [Floor(300,0,20,50),Floor(500,1,20,50),Floor(100,2,20,50),Floor(200,3,20,50),Floor(400,4,20,50)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -50,8 +53,9 @@ class Game():
                 self.player.moveUp()
 
             #Key press event for w
-            if keyPressed[pygame.K_s] and self.player.y > 0:
-                self.player.moveDown()
+            if keyPressed[pygame.K_s] and self.player.y >= 0:
+                if self.player.y < 580:
+                    self.player.moveDown()
 
             #self.player.checkPlayerY()
 
