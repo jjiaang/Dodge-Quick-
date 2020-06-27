@@ -24,10 +24,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = []
-        for i in range(11):
-            self.floors.append(Floor(100 + random.randrange(0,600),i,20,50,i))
-        #self.floors = [Floor(300,0,20,50),Floor(500,1,20,50),Floor(100,2,20,50),Floor(200,3,20,50),Floor(400,4,20,50)]
+        self.floors = [Floor(300,0,20,50),Floor(500,1,20,50),Floor(100,2,20,50),Floor(200,3,20,50),Floor(400,4,20,50), Floor(250,5,20,50),Floor(50,6,20,50),Floor(150,7,20,50),Floor(550,8,20,50),Floor(450,9,20,50)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -62,7 +59,9 @@ class Game():
             # Checks to see if the player is within a range, if the floor is at the end, floorTurn is changed
             # The boolean value of floorTurn controls the floor movement
             for floor in self.floors:
-                self.player.detectCollision(floor)
+                if self.player.detectCollision(floor):
+                    self.player.color = (255,0,0)
+
                 if floor.x < 800 - floor.length and not floor.floorTurn:
                     floor.direction = 1
                     floor.x += floor.velocity

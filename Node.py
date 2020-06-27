@@ -169,3 +169,4 @@ class Node():
     def detectCollision(self,floor):
         if ((self.y <= floor.floorPixelHeight) and (self.y >= floor.floorPixelHeight - floor.width)) and ((self.x > floor.x) and (self.x < floor.x + floor.length)):
             print("hit floor: ", floor.floorNumber)
+            return True

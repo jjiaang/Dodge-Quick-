@@ -5,7 +5,7 @@ pygame.init()
 
 class Floor():
 
-    def __init__(self,xpos,ypos,width,length,_floorNumber):
+    def __init__(self,xpos,ypos,width,length):
         self.x = xpos
         self.y = ypos
         self.width = width
@@ -14,7 +14,6 @@ class Floor():
         self.floorTurn = False
         self.velocity = 3.5
         self.direction = 1
-        self.floorNumber = _floorNumber
 
         self.floorHeights = [100,150,200,250,300,350,400,450,500,550,525]
 
