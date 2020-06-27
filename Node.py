@@ -32,6 +32,12 @@ class Node():
     def moveLeft(self):
 
         self.x -= self.speed
+
+    def moveUp(self):
+        self.y -= self.speed/2
+
+    def moveDown(self):
+        self.y += self.speed/2
     
     # Moves right
     def moveRight(self):
@@ -43,9 +49,12 @@ class Node():
 
         return self.isJump
 
+    """
     # Player jump command
     def jump(self):
 
+        # We set the floor value to 0, as when the player initially jumps, he is not on a floor
+        # We set prevJump to true
         self.floorValue = 0
         self.prevJump = True
 
@@ -79,12 +88,14 @@ class Node():
             self.isJump = False
             self.jumpCount = -self.jumpConstant
             self.checkPlayerY()
+    """
 
     # Draws the player
     def drawPlayer(self,window):
 
         pygame.draw.rect(window, self.getColor(),(self.x,int(self.y),self.sizex,self.sizey))
 
+    """
     # Checks to see if the player is in a correct Y position
     def checkPlayerY(self):
 
@@ -131,6 +142,7 @@ class Node():
                 self.touchingFloor = True
                 self.touchingGround = False
                 self.gravCountFloor = 4
+    """
 
     # Checks to see if the player is touching the ground
     def touchGround(self):
@@ -145,9 +157,11 @@ class Node():
             self.prevJump = False
             self.gravCountFloor = 4
 
+    # Checks to see if the player is touching the floor, returns a boolean if the floorvalue of the player is equal to the current y value of the player.
     def isTouchingFloor(self):
         if self.floorValue != self.y:
             self.touchingFloor = False
 
+    # Moves the player with the floor, takes in the floor that the player is currently on as a parameter
     def moveWithFloor(self,floor):
         self.x += floor.velocity * floor.direction

@@ -5,10 +5,16 @@ from Counter import Counter
 import math
 import random
 
+"""
+2020-06-27
+Abandon all ideas of a platformer jumping game, instead make it so that the player has to move up the screen to dodge floors, get a key, and come back and unlock the door
+"""
+
 class Game():
 
     def __init__(self):
 
+        # Initialize pygame for the game class, as well as initializing the font.
         pygame.init()
         pygame.font.init()
 
@@ -18,7 +24,7 @@ class Game():
 
         # Initialize the classes
         self.player = Node(0,580,5)
-        self.floors = [Floor(300,0,20,50)]
+        self.floors = [Floor(300,0,20,50),Floor(500,1,20,50),Floor(100,2,20,50),Floor(200,3,20,50),Floor(400,4,20,50)]
         self.counter = Counter(750,10)
 
         self.RUN = True
@@ -38,30 +44,43 @@ class Game():
             #Key press event for a
             if keyPressed[pygame.K_a] and self.player.x > 0:
                 self.player.moveLeft()
+                
+            #Key press event for w
+            if keyPressed[pygame.K_w] and self.player.y > 0:
+                self.player.moveUp()
 
-            self.player.checkPlayerY()
+            #Key press event for w
+            if keyPressed[pygame.K_s] and self.player.y > 0:
+                self.player.moveDown()
+
+            #self.player.checkPlayerY()
 
             # Checks to see if the player is within a range, if the floor is at the end, floorTurn is changed
             # The boolean value of floorTurn controls the floor movement
             for floor in self.floors:
-                if floor.x < 600 and not floor.floorTurn:
+                if floor.x < 780 - floor.width and not floor.floorTurn:
                     floor.direction = 1
                     floor.x += floor.velocity
                 else:
                     floor.direction = -1
                     floor.x += floor.velocity * floor.direction
                     floor.floorTurn = True
-                    if floor.x < 150:
+                    if floor.x < 0:
                         floor.floorTurn = False
 
+                """
                 # Checks to see if the player is on the floor, if the player is on the floor, the player will move with the floor.
                 if self.player.touchingFloor:
-                    self.player.moveWithFloor(floor)
+                    currentFloor = floor
+                    self.player.moveWithFloor(currentFloor)
+                    break
+                """
 
             #Key press event for d
             if keyPressed[pygame.K_d] and self.player.x < 800 - self.player.sizex:
                 self.player.moveRight()
 
+            """
             #Key press event for space bar
             if not self.player.checkJump():
 
@@ -71,7 +90,9 @@ class Game():
 
             else:
                 self.player.jump()
+            """
 
+            """
             #Checks to see if the player is within the range of the floors.
             #If the player is touching the floor, we set prevJump to false, since, that way, the gravity changes for the player
             #If prevJump is false, then the player will start falling as if it were falling from the apex of a jump, rather than having a constant value, which is super fast
@@ -86,16 +107,15 @@ class Game():
             
             #Checks to see if the player is not touching a floor anymore, based on the currentFloor, since floors cannot overlap, and a player can only touch one floor
             if self.player.x + self.player.sizex < currentFloor.x or self.player.x > currentFloor.x + currentFloor.length:
-                self.player.touchingFloor = False
+                self.player.touchingFloor = False 
 
-            print(self.player.y)    
+            """
 
+            # Pygame functions that draw the player and draw the screen, as well as drawing all the floors in the floors dynamic array
             self.screen.fill((0,0,0))
             self.player.drawPlayer(self.screen)
             for floor in self.floors:
                 floor.drawFloor(self.screen)
-
-            #print("Player y ",self.player.y,"Player x ", int(self.player.x), "Floor value ",self.player.floorValue,self.player.touchingFloor,self.player.isJump)
 
             # Displays the X and Y position counters
             self.counter.printXPOS(self.screen,self.player)
