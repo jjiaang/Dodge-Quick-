@@ -6,7 +6,7 @@ Title pending
 
 Currently how it works is that the player needs to navigate moving blocks in order to reach a key, and bring it back to unlock a door
 
-[![Image from Gyazo](https://i.gyazo.com/0f13a797897fbd9117d780d036c0fac9.gif)](https://gyazo.com/0f13a797897fbd9117d780d036c0fac9)
+[![Image from Gyazo](https://i.gyazo.com/ccbc8e182130895c20ecbdcb9d382c54.gif)](https://gyazo.com/ccbc8e182130895c20ecbdcb9d382c54)
 
 ## TODO
 
