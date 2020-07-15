@@ -21,3 +21,8 @@ class Counter():
     def printYPOS(self,window,player):
         text = self.newFont.render("y = " + str(player.y),1,(255,255,255))
         window.blit(text,(self.x,self.y+15))
+
+    # Displays whether or not you got the Key
+    def printKey(self,window,keyValue):
+        text = self.newFont.render("Recieved key = " + str(keyValue),1,(255,255,255))
+        window.blit(text,(self.x,self.y+30))
