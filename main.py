@@ -1,9 +1,12 @@
 from Game import Game
 
-def game():
-    newGame = Game()
+if __name__ == "__main__":  
+    while (1): 
+        newGame = Game()
 
-    newGame.startGame()
+        newGame.startGame()
 
-if __name__ == "__main__":   
-    game()
+        if newGame.gameOver and not newGame.RUN:
+            newGame.startGame()
+        else:
+            break
