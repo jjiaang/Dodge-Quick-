@@ -18,7 +18,7 @@ class Game():
         pygame.display.set_caption("Game")
 
         # Initialize the classes
-        self.player = Node(0,580,5)
+        self.player = Node(0,580,3.5)
         self.key = Key(600,0)
         self.door = Door(760,550)
         #Current floor values are probably going to be level 1
