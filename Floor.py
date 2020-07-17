@@ -12,7 +12,7 @@ class Floor():
         self.length = length
         self.base = 580
         self.floorTurn = False
-        self.velocity = 3.5
+        self.velocity = 4.5
         self.direction = 1
 
         self.floorHeights = [100,150,200,250,300,350,400,450,500,550,525]
