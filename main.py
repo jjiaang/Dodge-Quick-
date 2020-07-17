@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 from pygame.rect import Rect
 from Game import Game
 
-if __name__ == "__main__":  
+def main():
     while (1): 
         
         newGame = Game()
@@ -15,3 +15,6 @@ if __name__ == "__main__":
             newGame.startGame()
         else:
             break
+
+if __name__ == "__main__":  
+    main()
